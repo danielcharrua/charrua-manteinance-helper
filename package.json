@@ -1,0 +1,11 @@
+{
+  "name": "charrua-maintenance-helper",
+  "version": "1.4.0",
+  "description": "WordPress plugin that assists with routine site maintenance tasks.",
+  "scripts": {
+    "plugin-zip": "node scripts/build-zip.mjs"
+  },
+  "author": "Daniel Pereyra Costas @ Charrua",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {}
+}

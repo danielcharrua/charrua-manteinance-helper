@@ -1,0 +1,15 @@
+{
+    "name": "charrua/maintenance-helper",
+    "description": "WordPress maintenance helper plugin",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Daniel Pereyra Costas",
+            "email": "daniel@charrua.es"
+        }
+    ],
+    "require": {
+        "yahnis-elsts/plugin-update-checker": "^5.6"
+    }
+}

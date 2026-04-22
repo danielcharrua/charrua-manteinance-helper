@@ -1,0 +1,22 @@
+# Claude Code
+.claude/
+skills/
+.github/skills/
+
+# Zip artifacts
+*.zip
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE Files
+.idea/
+.vscode/
+
+# Build Files
+node_modules/
+vendor/
+composer.lock
+package-lock.json
+release/
