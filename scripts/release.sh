@@ -17,6 +17,11 @@ fi
 
 echo "Releasing version $VERSION..."
 
+if gh release view "$VERSION" &>/dev/null; then
+    echo "Release $VERSION already exists, deleting it..."
+    gh release delete "$VERSION" --yes --cleanup-tag
+fi
+
 gh release create "$VERSION" \
     --title "$VERSION" \
     --notes "" \
