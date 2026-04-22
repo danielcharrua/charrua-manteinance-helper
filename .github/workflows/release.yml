@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,13 +22,21 @@ jobs:
           php-version: '8.2'
           tools: composer
 
+      - name: Install PHP dependencies
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: Verify vendor directory
+        run: |
+          if [ ! -f vendor/yahnis-elsts/plugin-update-checker/load-v5p6.php ]; then
+            echo "Error: vendor/yahnis-elsts/plugin-update-checker not found after composer install"
+            exit 1
+          fi
+          echo "vendor/ OK"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Install PHP dependencies
-        run: composer install --no-dev --optimize-autoloader
 
       - name: Build zip
         run: node scripts/build-zip.mjs
