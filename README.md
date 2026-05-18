@@ -72,22 +72,20 @@ Both pages require the `manage_options` capability.
 
 ### Releasing a New Version
 
-1. Update `Version:` in the plugin header (`charrua-maintenance-helper.php`).
+1. Bump the version in four places:
+   - `Version:` header in `charrua-maintenance-helper.php`
+   - `CHARRUA_MH_VERSION` constant in `charrua-maintenance-helper.php`
+   - `DB_VERSION` constant in `includes/class-database.php`
+   - `version` in `package.json`
 2. Commit and push to `main`.
-3. Run:
+3. Create a GitHub Release with a tag matching the version (e.g. `v1.4.0`).
 
-```bash
-bash scripts/release.sh
-```
-
-The script reads the version from the plugin header, validates that the working tree is clean, and creates a GitHub release. A GitHub Action then runs automatically: it installs PHP dependencies, builds the zip, and attaches it to the release as a downloadable asset.
-
-Requires the [GitHub CLI](https://cli.github.com/) (`gh`) to be installed and authenticated.
+A GitHub Actions workflow (`.github/workflows/release.yml`) triggers automatically on every published release: it installs dependencies, builds the zip, and attaches it as a release asset. WordPress sites running the plugin will detect the new release and show the update in the Plugins page.
 
 ### Building the Zip Locally
 
 ```bash
-node scripts/build-zip.mjs
+npm run plugin-zip
 ```
 
 Output: `release/charrua-maintenance-helper.zip`
